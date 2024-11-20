@@ -1,25 +1,7 @@
-class AbstractFactory {
-    createProductA() {}
-    createProductB() {}
-}
+// products.js
+//const db2 = require('../../database_2.js');
+//const db = require('../../database.js');
 
-class ConcreteFactory1 extends AbstractFactory {
-    createProductA() {
-        return new ConcreteProductA1();
-    }
-    createProductB() {
-        return new ConcreteProductB1();
-    }
-}
-
-class ConcreteFactory2 extends AbstractFactory {
-    createProductA(){
-        return new ConcreteProductA2();
-    }
-    createProductB(){
-        return new ConcreteProductB2();
-    }
-}
 
 //*Productos A
 
@@ -68,15 +50,4 @@ class ConcreteProductB2 extends AbstractProductB {
     }
 }
 
-function clientCode(factory) {
-    const productA = factory.createProductA();
-    const productB = factory.createProductB();
-    console.log(productB.usefulFunctionB());
-    console.log(productB.anotherUsefulFunctionB(productA));
-}
-
-console.log('Cliente: Testeando codigo cliente con el primer tipo de fabrica...');
-clientCode(new ConcreteFactory1());
-console.log('');
-console.log('Cliente: Testeando otro codigo cliente con el segundo tipo de fabrica...');
-clientCode(new ConcreteFactory2());
+module.exports = { ConcreteProductA1, ConcreteProductA2, ConcreteProductB1, ConcreteProductB2 };
