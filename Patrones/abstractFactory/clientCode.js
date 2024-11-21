@@ -1,4 +1,3 @@
-// app.js
 const { ConcreteFactory1, ConcreteFactory2 } = require('./abstractFactory');
 
 // client-code.js
@@ -10,7 +9,6 @@ function clientCode(factory) {
 }
 
 //module.exports = clientCode;
-
 console.log('Cliente: Testeando codigo cliente con el primer tipo de fabrica...');
 clientCode(new ConcreteFactory1());
 console.log('');
