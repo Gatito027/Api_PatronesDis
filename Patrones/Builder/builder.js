@@ -1,12 +1,5 @@
-class Product1 {
-    constructor() {
-        this.parts = [];
-    }
-
-    listParts() {
-        console.log('Partes del producto: ', this.parts.join(', '),'\n');
-    }
-}
+// builder.js
+const Product1 = require('./Product1'); // Corrige esta línea de importación
 
 class ConcreteBuilder1 {
     constructor() {
@@ -36,39 +29,4 @@ class ConcreteBuilder1 {
     }
 }
 
-class Director {
-    setBuilder(builder) {
-        this.builder = builder;
-    }
-
-    buildMinimalViableProduct() {
-        this.builder.producePartA();
-    }
-
-    buildFullFeaturedProduct() {
-        this.builder.producePartA();
-        this.builder.producePartB();
-        this.builder.producePartC();
-    }
-}
-
-function clientCode(director) {
-    const builder = new ConcreteBuilder1();
-    director.setBuilder(builder);
-
-    console.log('Producto estandar basico: ');
-    director.buildMinimalViableProduct();
-    builder.getProduct().listParts();
-
-    console.log('Producto estandar completo: ');
-    director.buildFullFeaturedProduct();
-    builder.getProduct().listParts();
-
-    console.log('Producto customisado: ');
-    builder.producePartA();
-    builder.producePartC();
-    builder.getProduct().listParts();
-}
-
-const director = new Director();
-clientCode(director);
+module.exports = ConcreteBuilder1;
