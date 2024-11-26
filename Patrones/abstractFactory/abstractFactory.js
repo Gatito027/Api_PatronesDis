@@ -1,26 +1,25 @@
-// abstract-factory.js
-const { ConcreteProductA1, ConcreteProductA2, ConcreteProductB1, ConcreteProductB2 } = require('./products');
-class AbstractFactory {
-    createProductA() {}
-    createProductB() {}
+const {MySQLConnection, MySQLQuery, PostgreSQLConnection, PostgreSQLQuery} = require('./productsIplement');
+class DatabaseFactory {
+    createConnection() {}
+    createQuery() {}
 }
 
-class ConcreteFactory1 extends AbstractFactory {
-    createProductA() {
-        return new ConcreteProductA1();
+class MySQLFactory extends DatabaseFactory {
+    createConnection() {
+        return new MySQLConnection();
     }
-    createProductB() {
-        return new ConcreteProductB1();
-    }
-}
-
-class ConcreteFactory2 extends AbstractFactory {
-    createProductA(){
-        return new ConcreteProductA2();
-    }
-    createProductB(){
-        return new ConcreteProductB2();
+    createQuery() {
+        return new MySQLQuery();
     }
 }
 
-module.exports = { ConcreteFactory1, ConcreteFactory2 };
+class PostgreSQLFactory extends DatabaseFactory {
+    createConnection() {
+        return new PostgreSQLConnection();
+    }
+    createQuery() {
+        return new PostgreSQLQuery();
+    }
+}
+
+module.exports = { MySQLFactory, PostgreSQLFactory }

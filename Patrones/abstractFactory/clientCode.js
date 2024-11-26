@@ -1,16 +1,18 @@
-const { ConcreteFactory1, ConcreteFactory2 } = require('./abstractFactory');
+const { MySQLFactory, PostgreSQLFactory } = require('./abstractFactory');
 
-// client-code.js
 function clientCode(factory) {
-    const productA = factory.createProductA();
-    const productB = factory.createProductB();
-    console.log(productB.usefulFunctionB());
-    console.log(productB.anotherUsefulFunctionB(productA));
+    const connection = factory.createConnection();
+    const query = factory.createQuery();
+
+    connection.connect();
+    query.execute();
+    connection.disconnect();
 }
 
-//module.exports = clientCode;
-console.log('Cliente: Testeando codigo cliente con el primer tipo de fabrica...');
-clientCode(new ConcreteFactory1());
-console.log('');
-console.log('Cliente: Testeando otro codigo cliente con el segundo tipo de fabrica...');
-clientCode(new ConcreteFactory2());
+// Usar la fábrica MySQL
+const mySQLFactory = new MySQLFactory();
+clientCode(mySQLFactory);
+
+// Usar la fábrica PostgreSQL
+const postgreSQLFactory = new PostgreSQLFactory();
+clientCode(postgreSQLFactory);
